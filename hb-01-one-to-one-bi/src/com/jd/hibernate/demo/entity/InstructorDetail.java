@@ -12,21 +12,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name="instructor_detail")
 public class InstructorDetail {
-   @OneToOne(mappedBy="instructorDetail",
-		     cascade= { CascadeType.DETACH,CascadeType.REFRESH,CascadeType.MERGE,CascadeType.PERSIST})
-	private Instructor instructor;
-	
-	
-	public Instructor getInstructor() {
-		return instructor;
-	}
-
-	public void setInstructor(Instructor instructor) {
-		this.instructor = instructor;
-	}
 
 	//define the fields
 	//annotate the fields with database column names
+	@OneToOne(mappedBy = "instructorDetail", 
+			cascade = { CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE,
+						CascadeType.PERSIST })//if CascadeType.ALL it will be bi directional deleting one would delete the other related entity
+	private Instructor instructor;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
@@ -71,6 +64,14 @@ public class InstructorDetail {
 
 	public void setHobby(String hobby) {
 		this.hobby = hobby;
+	}
+	
+	public Instructor getInstructor() {
+		return instructor;
+	}
+
+	public void setInstructor(Instructor instructor) {
+		this.instructor = instructor;
 	}
 
 	//generate toString() method

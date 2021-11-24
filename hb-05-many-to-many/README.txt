@@ -1,7 +1,30 @@
-Hibernate one to many uni directional
+Hibernate many to many
 
-Course  Review 1-M
-Deleting a course should delete all related reviews
+Course Student M-M
+Deleting a course should not delete any related student
 Use lazy loading using fetch=FetchType.LAZY
-Use JoinColumn(name=course_id) in course to map to reviews
-Use cascade=CascadeType.ALL for cascading delete
+
+
+In Course class
+	@ManyToMany(
+			fetch=FetchType.LAZY,
+			cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH}
+			)
+	@JoinTable(
+			name="course_student",
+			joinColumns=@JoinColumn(name="course_id"),
+			inverseJoinColumns = @JoinColumn(name="student_id")
+			)
+	private List<Student> students;
+	
+In Student class
+	@ManyToMany(
+			fetch=FetchType.LAZY,
+			cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH}
+			)
+	@JoinTable(
+			name="course_student",
+			joinColumns=@JoinColumn(name="student_id"),
+			inverseJoinColumns = @JoinColumn(name="course_id")
+			)
+	private List<Course> courses;
