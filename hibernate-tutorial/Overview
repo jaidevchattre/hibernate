@@ -1,0 +1,9 @@
+This tutorial deals with create a connection with MySQL database
+Creating,retriving,updating and deleting a resource from MySQL database.
+Also it has introduction to basic Java Persistent annotations that include 
+@Entity
+@Table
+@Column
+@Id
+@GeneratedValue(strategy=GenerationType.IDENTITY)
+This project has code on how to create a hibernate session and read configuration from hibernate.cfg.xml file
