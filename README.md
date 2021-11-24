@@ -1,4 +1,4 @@
-# hibernate
+# Hibernate
 Hibernate -Basics and Advanced Mappings
 This repository contain Hibernate basics.
 Creating a session, querying the database.
